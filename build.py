@@ -544,6 +544,8 @@ def usage_tags(card, incoming=None):
         tags.append(("書", "reg w"))
     elif card.get("reg") == "話":
         tags.append(("話", "reg o"))
+    if card.get("freq"):
+        tags.append(("★" * int(card["freq"]), "freq"))
     regs = {p.get("register") for p in card.get("pairs", [])}
     inc = (incoming or {}).get(card["id"], set())
     # Register badges derive from BOTH directions of the curated links:

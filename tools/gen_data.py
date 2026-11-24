@@ -122,6 +122,12 @@ REG = {1: "書", 2: "書", 3: "話", 5: "書", 6: "話", 7: "話", 9: "書",
        37: "話", 38: "書", 41: "話", 43: "書", 44: "書", 45: "話",
        46: "書", 51: "書", 54: "話", 55: "話", 56: "話", 57: "書", 58: "書"}
 
+
+# Frequency / commonness: 3 = everyday + exam staple, 2 = common, 1 = niche.
+FREQ3 = {3, 6, 7, 13, 14, 15, 19, 20, 23, 24, 25, 26, 27, 29, 30, 34, 37, 39,
+         41, 42, 45, 48, 50, 51, 52, 53, 54, 55, 56, 59, 60}
+FREQ1 = {5, 9, 32, 57}
+
 cards = []
 for i, (front, reading, meaning, gloss, ex, ex_zh, group) in enumerate(ROWS, 1):
     cards.append({
@@ -135,6 +141,7 @@ for i, (front, reading, meaning, gloss, ex, ex_zh, group) in enumerate(ROWS, 1):
         "group": group,
         "level": LEVEL.get(i, "N2"),
         "reg": REG.get(i, ""),
+        "freq": 3 if i in FREQ3 else (1 if i in FREQ1 else 2),
         "pairs": [],
     })
 
