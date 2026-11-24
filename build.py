@@ -538,6 +538,12 @@ def usage_tags(card, incoming=None):
     tags = []  # (text, extra css class)
     if card.get("group"):
         tags.append((card["group"], "grp"))
+    if card.get("level"):
+        tags.append((card["level"], "lvl"))
+    if card.get("reg") == "書":
+        tags.append(("書", "reg w"))
+    elif card.get("reg") == "話":
+        tags.append(("話", "reg o"))
     regs = {p.get("register") for p in card.get("pairs", [])}
     inc = (incoming or {}).get(card["id"], set())
     # Register badges derive from BOTH directions of the curated links:

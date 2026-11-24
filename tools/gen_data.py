@@ -110,6 +110,18 @@ CURATED = [
     (46, 47, "基づいて是以规则、数据为依据；もとに是以具体材料为原型"),
 ]
 
+
+# JLPT level (prep-book consensus; default N2) and register:
+# 話 = everyday spoken, 書 = written/formal, "" = neutral.
+LEVEL = {6: "N3", 7: "N3", 13: "N3", 20: "N3", 23: "N3", 24: "N3", 27: "N3",
+         29: "N3", 31: "N3", 52: "N3", 53: "N3", 54: "N3", 55: "N3", 59: "N3",
+         60: "N3", 58: "N1"}
+REG = {1: "書", 2: "書", 3: "話", 5: "書", 6: "話", 7: "話", 9: "書",
+       10: "書", 13: "話", 14: "話", 15: "話", 18: "話", 20: "話",
+       22: "書", 23: "話", 26: "話", 29: "話", 32: "書", 35: "書", 36: "書",
+       37: "話", 38: "書", 41: "話", 43: "書", 44: "書", 45: "話",
+       46: "書", 51: "書", 54: "話", 55: "話", 56: "話", 57: "書", 58: "書"}
+
 cards = []
 for i, (front, reading, meaning, gloss, ex, ex_zh, group) in enumerate(ROWS, 1):
     cards.append({
@@ -121,6 +133,8 @@ for i, (front, reading, meaning, gloss, ex, ex_zh, group) in enumerate(ROWS, 1):
         "collocations": [],
         "cat": "文法",
         "group": group,
+        "level": LEVEL.get(i, "N2"),
+        "reg": REG.get(i, ""),
         "pairs": [],
     })
 
