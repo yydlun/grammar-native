@@ -151,22 +151,81 @@ for i, (front, reading, meaning, gloss, ex, ex_zh, group) in enumerate(ROWS, 1):
         "pairs": [],
     })
 
+# ---- extra rows (2026-11-24 expansion): ids continue after the original 60
+import os as _os
+import sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from rows_extra import ROWS_NEW
+
+_next = max(c["id"] for c in cards) + 1
+for (front, reading, meaning, gloss, ex, ex_zh, group, level, reg, freq) in ROWS_NEW:
+    cards.append({
+        "id": _next,
+        "front": front,
+        "reading": reading,
+        "meaning": meaning,
+        "senses": [{"gloss": gloss, "example": ex, "example_zh": ex_zh}],
+        "collocations": [],
+        "cat": "文法",
+        "group": group,
+        "level": level,
+        "reg": reg,
+        "freq": freq,
+        "pairs": [],
+    })
+    _next += 1
+
 by_id = {c["id"]: c for c in cards}
-# intra-group links with the shared group note
+# Pair links: within each (group, level) bucket, sorted by id and chunked
+# into runs of at most 7 so no card exceeds 6 group links; chunks keep
+# natural families (e.g. the ni-kagiru set) together.
 from itertools import combinations
-groups = {}
+buckets = {}
 for c in cards:
-    groups.setdefault(c["group"], []).append(c["id"])
-for group, ids in groups.items():
-    for a, b in combinations(ids, 2):
-        for x, y in ((a, b), (b, a)):
-            by_id[x]["pairs"].append({"id": y, "register": "近義", "note": GROUP_NOTES[group]})
-# curated distinction notes replace the plain group entry for that pair
-for a, b, note in CURATED:
+    buckets.setdefault((c["group"], c["level"]), []).append(c["id"])
+for (group, level), ids in buckets.items():
+    ids = sorted(ids)
+    for s in range(0, len(ids), 7):
+        chunk = ids[s:s + 7]
+        for a, b in combinations(chunk, 2):
+            for x, y in ((a, b), (b, a)):
+                by_id[x]["pairs"].append({"id": y, "register": "近義", "note": GROUP_NOTES[group]})
+
+def set_pair_note(a, b, note):
     for x, y in ((a, b), (b, a)):
+        hit = None
         for p in by_id[x]["pairs"]:
             if p.get("id") == y:
-                p["note"] = note
+                hit = p
+                break
+        if hit is None:
+            by_id[x]["pairs"].append({"id": y, "register": "近義", "note": note})
+        else:
+            hit["note"] = note
+
+# curated distinction notes (original set, id-based)
+for a, b, note in CURATED:
+    set_pair_note(a, b, note)
+
+# curated distinction notes for the expansion (front-based)
+CURATED2 = [
+    ("〜一方で", "〜反面", "反面指同一事物的两面；一方で是两件事并立对比"),
+    ("〜ばかりだ", "〜一方だ", "意思相近；ばかりだ多用于不好的变化，带不满语气"),
+    ("〜わけがない", "〜わけではない", "わけがない是断定「绝不可能」；わけではない是部分否定「并不是」"),
+    ("〜おかげで", "〜せいで", "おかげで用于好结果（带感谢）；せいで用于坏结果（带责怪）"),
+    ("〜くらい", "〜ほど", "ほど更强调程度、稍书面；くらい更口语"),
+    ("〜ことにする", "〜ことになる", "ことにする是自己决定；ことになる是外部决定或事态发展"),
+    ("〜次第", "〜たとたんに", "次第偏正式（商务、通知）；たとたんに多指意外，口语也常用"),
+    ("〜ものだ", "〜ものではない", "ものだ是感慨、理所当然；ものではない是劝诫「不应该」"),
+    ("〜といったら", "〜ときたら", "といったら是惊叹程度；ときたら带责备口吻提某人某事"),
+    ("〜に際して", "〜に先立って", "に際して是「在……之际」；に先立って是「在……之前率先」"),
+    ("〜羽目になる", "〜始末だ", "羽目になる口语常用；始末だ更书面，强调结局糟糕"),
+    ("〜までして", "〜てまで", "までして接名词；てまで接动词て形"),
+    ("〜さえ", "〜すら", "すら是さえ的书面版，语气更强"),
+]
+front_to_id = {c["front"]: c["id"] for c in cards}
+for fa, fb, note in CURATED2:
+    set_pair_note(front_to_id[fa], front_to_id[fb], note)
 
 out = os.path.join(BASE, "data", "cards.json")
 with open(out, "w", encoding="utf-8") as f:

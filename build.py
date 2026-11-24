@@ -38,7 +38,11 @@ from janome.tokenizer import Tokenizer
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 MODEL_ID = 1738092464
-DECK_ID = 2048691766
+DECKS = {
+    "N2": (2048691766, "文法（native 样式）::1_N2"),
+    "N3": (2048691767, "文法（native 样式）::2_N3"),
+    "N1": (2048691768, "文法（native 样式）::3_N1"),
+}
 CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩"
 ICON_FILE = "chatgpt-icon.png"
 _TKZ = Tokenizer()
@@ -737,7 +741,7 @@ def main():
         css=_css_with_icon(media_dir),
     )
 
-    deck = genanki.Deck(DECK_ID, "文法（native 样式）::N2")
+    decks = {lv: genanki.Deck(did, name) for lv, (did, name) in DECKS.items()}
     by_id = {c["id"]: c for c in cards}
     incoming = {}
     for c in cards:
@@ -775,9 +779,9 @@ def main():
             tags=[c["cat"]] + ([c["group"]] if c.get("group") else []) + sorted(set(pair_tags)),
             guid=f"gr-{c['id']}",
         )
-        deck.add_note(note)
+        decks[c["level"]].add_note(note)
 
-    package = genanki.Package(deck)
+    package = genanki.Package(list(decks.values()))
     package.media_files = sorted(set(media_files))
     out = os.path.join(BASE, "dist", "grammar-native.apkg")
     os.makedirs(os.path.dirname(out), exist_ok=True)
