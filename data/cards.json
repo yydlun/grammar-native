@@ -138,7 +138,7 @@
   "cat": "文法",
   "group": "不得不",
   "level": "N2",
-  "reg": "",
+  "reg": "話",
   "freq": 2,
   "pairs": [
    {
@@ -292,7 +292,7 @@
   "cat": "文法",
   "group": "忍不住",
   "level": "N2",
-  "reg": "",
+  "reg": "話",
   "freq": 2,
   "pairs": [
    {
@@ -410,7 +410,7 @@
   "cat": "文法",
   "group": "逆接",
   "level": "N2",
-  "reg": "",
+  "reg": "書",
   "freq": 2,
   "pairs": [
    {
@@ -456,7 +456,7 @@
   "cat": "文法",
   "group": "逆接",
   "level": "N2",
-  "reg": "",
+  "reg": "書",
   "freq": 2,
   "pairs": [
    {
@@ -640,7 +640,7 @@
   "cat": "文法",
   "group": "条件",
   "level": "N2",
-  "reg": "",
+  "reg": "話",
   "freq": 2,
   "pairs": [
    {
@@ -681,7 +681,7 @@
   "cat": "文法",
   "group": "条件",
   "level": "N2",
-  "reg": "",
+  "reg": "書",
   "freq": 2,
   "pairs": [
    {
@@ -763,7 +763,7 @@
   "cat": "文法",
   "group": "条件",
   "level": "N2",
-  "reg": "",
+  "reg": "書",
   "freq": 3,
   "pairs": [
    {
@@ -845,7 +845,7 @@
   "cat": "文法",
   "group": "推量",
   "level": "N2",
-  "reg": "",
+  "reg": "話",
   "freq": 2,
   "pairs": [
    {
@@ -968,7 +968,7 @@
   "cat": "文法",
   "group": "推量",
   "level": "N3",
-  "reg": "",
+  "reg": "話",
   "freq": 3,
   "pairs": [
    {
@@ -1009,7 +1009,7 @@
   "cat": "文法",
   "group": "推量",
   "level": "N2",
-  "reg": "",
+  "reg": "話",
   "freq": 3,
   "pairs": [
    {
@@ -1086,7 +1086,7 @@
   "cat": "文法",
   "group": "様態",
   "level": "N3",
-  "reg": "",
+  "reg": "話",
   "freq": 3,
   "pairs": [
    {
@@ -1122,7 +1122,7 @@
   "cat": "文法",
   "group": "様態",
   "level": "N2",
-  "reg": "",
+  "reg": "書",
   "freq": 2,
   "pairs": [
    {
@@ -1194,7 +1194,7 @@
   "cat": "文法",
   "group": "変化",
   "level": "N2",
-  "reg": "",
+  "reg": "話",
   "freq": 3,
   "pairs": [
    {
@@ -1245,7 +1245,7 @@
   "cat": "文法",
   "group": "変化",
   "level": "N3",
-  "reg": "",
+  "reg": "話",
   "freq": 2,
   "pairs": [
    {
@@ -1347,7 +1347,7 @@
   "cat": "文法",
   "group": "変化",
   "level": "N2",
-  "reg": "",
+  "reg": "書",
   "freq": 2,
   "pairs": [
    {
@@ -1398,7 +1398,7 @@
   "cat": "文法",
   "group": "変化",
   "level": "N2",
-  "reg": "",
+  "reg": "書",
   "freq": 3,
   "pairs": [
    {
@@ -1673,7 +1673,7 @@
   "cat": "文法",
   "group": "限定",
   "level": "N2",
-  "reg": "",
+  "reg": "話",
   "freq": 3,
   "pairs": [
    {
@@ -1734,7 +1734,7 @@
   "cat": "文法",
   "group": "限定",
   "level": "N2",
-  "reg": "",
+  "reg": "書",
   "freq": 2,
   "pairs": [
    {
@@ -1856,7 +1856,7 @@
   "cat": "文法",
   "group": "限定",
   "level": "N2",
-  "reg": "",
+  "reg": "話",
   "freq": 3,
   "pairs": [
    {
@@ -2146,7 +2146,7 @@
   "cat": "文法",
   "group": "基準",
   "level": "N2",
-  "reg": "",
+  "reg": "書",
   "freq": 2,
   "pairs": [
    {
@@ -2192,7 +2192,7 @@
   "cat": "文法",
   "group": "基準",
   "level": "N2",
-  "reg": "",
+  "reg": "書",
   "freq": 3,
   "pairs": [
    {
@@ -2238,7 +2238,7 @@
   "cat": "文法",
   "group": "基準",
   "level": "N2",
-  "reg": "",
+  "reg": "書",
   "freq": 2,
   "pairs": [
    {
@@ -2284,7 +2284,7 @@
   "cat": "文法",
   "group": "基準",
   "level": "N2",
-  "reg": "",
+  "reg": "書",
   "freq": 3,
   "pairs": [
    {
@@ -2376,7 +2376,7 @@
   "cat": "文法",
   "group": "句型",
   "level": "N3",
-  "reg": "",
+  "reg": "書",
   "freq": 3,
   "pairs": [
    {
@@ -2437,7 +2437,7 @@
   "cat": "文法",
   "group": "句型",
   "level": "N3",
-  "reg": "",
+  "reg": "話",
   "freq": 3,
   "pairs": [
    {
@@ -2803,7 +2803,7 @@
   "cat": "文法",
   "group": "句型",
   "level": "N3",
-  "reg": "",
+  "reg": "話",
   "freq": 3,
   "pairs": [
    {
@@ -2864,7 +2864,7 @@
   "cat": "文法",
   "group": "句型",
   "level": "N3",
-  "reg": "",
+  "reg": "話",
   "freq": 3,
   "pairs": [
    {

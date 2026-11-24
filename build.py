@@ -217,6 +217,8 @@ ruby rt { font-size: 11px; color: #8a7f6a; }
 .nightMode .rel-read { color: #a99f90; }
 .rel-audio { margin-left: auto; flex: none; }
 .rel-sub { color: #4f463a; font-size: 16px; }
+.rel-meta { font-size: 12.5px; color: #98917f; margin-left: 7px; letter-spacing: .02em; }
+.nightMode .rel-meta, .night-mode .rel-meta, .night_mode .rel-meta { color: #a99f90; }
 .nightMode .rel-sub { color: #beb4a4; }
 body.dense1 .card { font-size: 17px; }
 body.dense1 .front { font-size: 28px; }
@@ -645,10 +647,15 @@ def render_collocations(card, by_id, media_set):
                 p["front"], p["reading"], p["meaning"])
             d_scene = ""
             audio = ""
+        meta = ""
+        if "id" in p and other is not None:
+            meta = "・".join(x for x in (
+                other.get("level", ""), other.get("reg", ""),
+                "★" * int(other.get("freq", 0) or 0)) if x)
         rows.append({
             "reg": p["register"], "front": d_front, "reading": d_reading,
             "meaning": d_meaning, "note": p.get("note") or "",
-            "scene": d_scene, "audio": audio,
+            "scene": d_scene, "audio": audio, "meta": meta,
         })
 
     def head_html(r, with_chip=True):
@@ -659,7 +666,9 @@ def render_collocations(card, by_id, media_set):
         return (
             '<div class="rel-head">' + chip
             + f'<a class="Dict WordLink rel-front" data-w="{html.escape(r["front"], quote=True)}" target="_blank" rel="noopener">{_ruby_html(r["front"], _to_hira(r["reading"]))}</a>'
-            f'<a class="GptL" data-w="{html.escape(r["front"], quote=True)}" target="_blank" rel="noopener"></a>{r["audio"]}</div>'
+            f'<a class="GptL" data-w="{html.escape(r["front"], quote=True)}" target="_blank" rel="noopener"></a>{r["audio"]}'
+            + (f'<span class="rel-meta">{html.escape(r["meta"])}</span>' if r.get("meta") else "")
+            + '</div>'
         )
 
     from collections import Counter, OrderedDict
