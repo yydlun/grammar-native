@@ -568,7 +568,7 @@ def usage_tags(card, incoming=None):
         if t[0] not in seen:
             seen.add(t[0])
             out.append(t)
-    return out[:3]
+    return out[:4]
 
 
 def render_senses(card, media_set, incoming=None):
